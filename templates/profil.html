@@ -1,0 +1,66 @@
+﻿{% extends 'layout.html' %}
+
+{% block body %}
+<h3>Kontrol Paneli</h3>
+<hr>
+ 
+<div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" src="/static/avatar-default-icon.png" width="150" height="150">
+    <div class="media-body">
+      <h2 class="account-heading">Kullanıcı Adı : <strong>{{request.user.username}}</h2>
+      <h4 class="text-secondary">Ad Soyad : {{user.get_full_name}}</h4>
+      <h4 class="text-secondary">E-mail : {{user.email}}</h4>
+      
+      
+    </div>
+  </div>
+  {% if request.user.is_superuser %}
+      <div class="alert alert-warning">
+      <p>Kurucu yetkisine sahipsiniz.</p>
+      </div>
+      
+      {% elif  perms.makale.add_makale %}
+      <div class="alert alert-warning">
+      <p>Makale Admin yetkisine sahipsiniz.</p>
+      </div>
+      {% endif %}
+  {% if makaleler %}
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Başlık</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for makale in makaleler %}
+  <tr>  
+    <th scope="row">{{makale.id}}</th>
+    <td><a href="/makale/makaleayrinti/{{makale.id}}">{{makale.Başlık}}</a></td>
+    <td>{{makale.Yazar.username}}</td>
+    <td>{{makale.Olusturma_Tarihi}}</td>
+    <td><a href="/makale/makaleguncelle/{{makale.id}}" class="btn btn-warning">Güncelle</a></td>
+    <td><a href="/makale/makalesil/{{makale.id}}" class="btn btn-danger">Sil</a></td>
+  </tr>
+  {% endfor %}
+  <hr>
+
+
+  
+  </tbody>
+</table>
+<hr>
+</hr>
+{% else %}
+  <div class="alert alert-danger">Henüz Bir Makaleniz Bulunmuyor.</div>
+  <br>
+{% endif %}
+<div align=”Left”> <a class="btn btn-primary" href = "/makale/makalekle">Makale Ekle</a> </div>
+{% endblock body %}
+</div>
+
+
+

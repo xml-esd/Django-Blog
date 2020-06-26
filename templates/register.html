@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+{% load crispy_forms_tags %}
+<br><br><br><br><br>
+<h3>Kayit ol</h3>
+<hr>
+
+<form method="post">
+{% csrf_token %}
+{{form|crispy}}<br>
+<strong>* ile işaretli alanların doldurulması zorunludur.</strong><br>
+<button type ="submit" class="btn btn-danger">Kaydol</button>
+</form>
+{% endblock body %}

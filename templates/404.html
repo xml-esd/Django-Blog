@@ -1,0 +1,84 @@
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head> 
+<style>
+*{
+  transition: all 0.6s;
+}
+
+html {
+  height: 100%;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+  color: #888;
+  margin: 0;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn {
+  background: $white;
+  padding: 15px 20px;
+  margin: 5px;
+  color: $dark;
+  font-family: $body;
+  text-transform: uppercase;
+  font-size: .9em;
+  letter-spacing: 1px;
+  border: 0;
+  &:hover {
+    background: $gray;
+    transition: all .4s ease-out;
+  }
+}
+
+#main{
+  display: table;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.fof{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fof h1{
+  font-size: 50px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type .5s alternate infinite;
+}
+
+@keyframes type{
+  from{box-shadow: inset -3px 0px 0px #888;}
+  to{box-shadow: inset -3px 0px 0px transparent;}
+}
+</style>
+</head> 
+<body> 
+ <div id="main">
+    	<div class="fof">
+        		<h1>Sanırım Yanlış Yerdesin...</h1>
+            <div class="buttons">
+            <a href="/"><button class="btn">Anasayfa</button></a>
+          </div>
+    	</div>
+      
+</div>
+
+
+ </body>
+</html>
+
+
+{% endblock body %}

@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/bootstrap3.min.css' %}">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{% block body %}
+
+<div class="row">
+        <div class="col-md-8">
+        <h1>Makaleler</h1>
+</div>
+</div>
+
+
+<strong><hr style="border-color: black"></strong>
+
+  {% if makaleler %}
+
+  {% for makale in makaleler %}
+ <div class="container">
+ 
+  <div class="well">
+  {% if makale.makal_resim  %}
+  <div class="media">
+      	<a class="pull-left" href="{% url 'makale:makaleayrinti' makale.id %}">
+    		<img class="media-object" src="{{makale.makal_resim.url}}" width="300" height="200">
+    		</a>
+  {% else %}
+  <div class="media">
+      	<a class="pull-left" href="/makale/makaleayrinti/{{makale.id}}">
+    		<img class="media-object" src="/static/no-image.jpeg" width="300" height="200">
+  	  	</a>
+  {% endif %}
+  		<div class="media-body">
+    		<a href="{% url 'makale:makaleayrinti' makale.id %}"><h2 class="media-heading">{{makale.Başlık}}</h2></a>
+          <h3 class="text-left"><strong>{{makale.Yazar}}</strong> tarafından <strong>{{makale.Olusturma_Tarihi}}</strong> tarihinde yayımlandı.</h3>
+          <p class="lead">{{makale.İçerik | safe | truncatewords:70}}</p><br>
+          <a href="{% url 'makale:makaleayrinti' makale.id %}" class="btn btn-warning pull-right">Devamını Oku</a>     
+       </div>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+  
+{% else %}
+  <div class="alert alert-danger">Aradığınız başlıkta bir makale bulunamadı.</div>
+  <br>
+  
+
+{% endif %}
+
+
+
+
+
+{% endblock body %}
+</div>
+
+
+

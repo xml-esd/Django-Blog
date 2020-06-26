@@ -1,0 +1,48 @@
+<nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-inverse fixed-top bg-inverse">
+<a class="navbar-brand" href="{% url 'index' %}">DevBlog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url  'about' %}">Hakkımda</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'makale:makaleler' %}">Makaleler</a>
+          </li>
+         
+       <form class="form-inline mr-auto" >
+       {% csrf_token %}
+      <input class="form-control" type="text" placeholder="Makale'yi Başlığa Göre Arayın.." aria-label="Search" name="arama">
+      <button class="btn btn-danger btn-rounded btn-sm my-0 ml-sm-2" type="submit">Ara</button>
+    </form>
+        
+      </ul>
+      <ul class="navbar-nav navbar-right"> 
+      {% if request.user.is_authenticated  %}
+      <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:profil' %}">Kontrol Paneli</a>
+            </li>  
+      <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:logout' %}">Çıkış Yap</a>
+            </li>
+      {% else %}
+      <li class="nav-item">
+             <a class="nav-link" href="{% url 'user:login' %}">Giriş Yap</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:register' %}">Kayıt Ol</a>
+          </li>
+      {% endif %}
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'iletisim' %}">İletişim</a>
+          </li>
+        </ul>
+    </div>
+
+
+  </nav>

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+{% if perms.makale.add_makale %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+        <br>
+        <h3>Makale Ekle</h3>
+        <hr>
+        <form method="post" enctype="multipart/form-data">     
+        {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        {{makale.İçerik|safe}}
+        <br>
+        <button type="submit" class="btn btn-danger">Makale Ekle</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<h1><strong>Makale Oluşturma Yetkiniz Bulunmuyor. Yönetici İle İletişime Geçiniz.</strong></h1>
+{% endif %}
+
+
+{% endblock body %}
