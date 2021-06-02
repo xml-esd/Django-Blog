@@ -35,7 +35,7 @@ smmap==3.0.4
 sqlparse==0.3.1
 stevedore==1.32.0
 tweepy==3.8.0
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.0.21
 Werkzeug==1.0.1
 wrapt==1.11.2
